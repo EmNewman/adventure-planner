@@ -1,17 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 // import { fetchCount } from './counterAPI';
-import { Bin } from '../../types/types';
-import { tempBinList } from '../../demodata/demodata';
+import { Bin, BinDict } from "../../types/types";
+import { tempBinList } from "../../demodata/demodata";
 
 export interface CounterState {
-  bins: Array<Bin>, // All bins possible
-  checked: Array<string>, // List of bins checked
+  bins: BinDict; // All bins possible
+  checked: Array<string>; // List of bins checked
 }
 
 const initialState: CounterState = {
   bins: tempBinList,
-  checked: []
+  checked: [],
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -29,7 +29,7 @@ const initialState: CounterState = {
 // );
 
 export const binListSlice = createSlice({
-  name: 'bin-list',
+  name: "bin-list",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {

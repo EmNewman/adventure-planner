@@ -7,3 +7,7 @@ export type Item = {
   name: string;
   tags: Array<string>;
 }
+
+export type BinDict = {
+  [name: string]: Bin
+};

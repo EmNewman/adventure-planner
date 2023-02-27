@@ -6,7 +6,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
-import { Bin } from "../../types/types";
+import { BinDict } from "../../types/types";
 import { selectBinList, selectCheckedBins, toggleCheckedBin } from "./binListSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,16 +14,16 @@ import { useDispatch, useSelector } from "react-redux";
 export default function BinSelector() {
   // Redux 
   const dispatch = useDispatch();
-  const binList = useSelector(selectBinList);
+  const binList: BinDict = useSelector(selectBinList);
   const checked = useSelector(selectCheckedBins);
 
   return (
     <Paper>
       <Typography variant="h2">bins</Typography>
       <List>
-        {binList.map((bin: Bin) => (
+        {Object.keys(binList).map((bin: string) => (
           <ListItem
-            key={`binListItem-${bin.name}`}
+            key={`binListItem-${bin}`}
             secondaryAction={
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />
@@ -33,19 +33,19 @@ export default function BinSelector() {
           >
             <ListItemButton
               role={undefined}
-              onClick={() => dispatch(toggleCheckedBin(bin))}
+              onClick={() => dispatch(toggleCheckedBin(binList[bin]))}
               dense
             >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(bin.name) !== -1}
+                  checked={checked.indexOf(bin) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ "aria-labelledby": `bin-${bin.name}` }}
+                  inputProps={{ "aria-labelledby": `bin-${bin}` }}
                 />
               </ListItemIcon>
-              <ListItemText id={`bin-${bin.name}`} primary={bin.name} />
+              <ListItemText id={`bin-${bin}`} primary={bin} />
             </ListItemButton>
           </ListItem>
         ))}
