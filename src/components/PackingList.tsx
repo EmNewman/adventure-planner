@@ -47,9 +47,7 @@ export default function PackingList(props: Props) {
           <ListItem
             key={`packingListItem-${item.name}`}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-                <CommentIcon />
-              </IconButton>
+              <Typography sx={{ fontSize: 10 }}>(Covered by Bin)</Typography>
             }
             disablePadding
           >
