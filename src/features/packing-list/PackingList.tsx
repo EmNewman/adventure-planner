@@ -23,8 +23,10 @@ export default function PackingList() {
   const filteredList = itemList.filter((item) => item.tags.some((tag) => selectedCategories.includes(tag)));
 
   return (
-    <Paper>
-      <Typography variant="h2">packing list</Typography>
+    <Paper sx={{ padding: "10px" }}>
+      <Typography variant="h4" sx={{ padding: "10px" }}>
+        packing list
+      </Typography>
       <List>
         {filteredList.map((item: Item) => {
           // Check if item is in a selected bin
@@ -51,7 +53,7 @@ export default function PackingList() {
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={checkedItems.indexOf(item.name) !== -1}
+                    checked={binName !== "" || checkedItems.indexOf(item.name) !== -1}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": `item-${item.name}` }}

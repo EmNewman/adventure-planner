@@ -10,16 +10,17 @@ import { BinDict } from "../../types/types";
 import { selectBinList, selectCheckedBins, toggleCheckedBin } from "./binListSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function BinSelector() {
-  // Redux 
+  // Redux
   const dispatch = useDispatch();
   const binList: BinDict = useSelector(selectBinList);
   const checked = useSelector(selectCheckedBins);
 
   return (
-    <Paper>
-      <Typography variant="h2">bins</Typography>
+    <Paper sx={{ padding: "10px" }}>
+      <Typography variant="h4" sx={{ padding: "10px" }}>
+        bins
+      </Typography>
       <List>
         {Object.keys(binList).map((bin: string) => (
           <ListItem
@@ -31,11 +32,7 @@ export default function BinSelector() {
             }
             disablePadding
           >
-            <ListItemButton
-              role={undefined}
-              onClick={() => dispatch(toggleCheckedBin(binList[bin]))}
-              dense
-            >
+            <ListItemButton role={undefined} onClick={() => dispatch(toggleCheckedBin(binList[bin]))} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"

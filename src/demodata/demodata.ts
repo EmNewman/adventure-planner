@@ -35,11 +35,11 @@ export const tempItemList: Array<Item> = [
   },
   {
     name: "hiking bag",
-    tags: ["hiking"],
+    tags: ["backpacking"],
   },
   {
     name: "hiking pants",
-    tags: ["backpacking", "hiking", "skiing"],
+    tags: ["backpacking", "skiing"],
   },
 ];
 
