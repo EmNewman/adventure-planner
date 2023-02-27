@@ -5,14 +5,15 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "./Theme";
 import { CssBaseline } from "@mui/material";
 import Header from "./components/Header";
+import Configure from "./pages/Configure";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Home />
-      {/* <Configure /> */}
+      {/* <Home /> */}
+      <Configure />
     </ThemeProvider>
   );
 }
