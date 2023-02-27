@@ -6,34 +6,22 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Checkbox from "@mui/material/Checkbox";
 import ListItemText from "@mui/material/ListItemText";
-import { Bin } from "../types/types";
+import { Bin } from "../../types/types";
+import { selectBinList, selectCheckedBins, toggleCheckedBin } from "./binListSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-type Props = {
-  binList: Array<Bin>;
-  checked: Array<string>;
-  setChecked: React.Dispatch<React.SetStateAction<string[]>>;
-  // packingListSetChecked: React.Dispatch<React.SetStateAction<string[]>>;
-};
 
-export default function BinSelector(props: Props) {
-  const handleToggle = (value: string) => () => {
-    const currentIndex = props.checked.indexOf(value);
-    const newChecked = [...props.checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    props.setChecked(newChecked);
-  };
+export default function BinSelector() {
+  // Redux 
+  const dispatch = useDispatch();
+  const binList = useSelector(selectBinList);
+  const checked = useSelector(selectCheckedBins);
 
   return (
     <Paper>
       <Typography variant="h2">bins</Typography>
       <List>
-        {props.binList.map((bin: Bin) => (
+        {binList.map((bin: Bin) => (
           <ListItem
             key={`binListItem-${bin.name}`}
             secondaryAction={
@@ -45,13 +33,13 @@ export default function BinSelector(props: Props) {
           >
             <ListItemButton
               role={undefined}
-              onClick={handleToggle(bin.name)}
+              onClick={() => dispatch(toggleCheckedBin(bin))}
               dense
             >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={props.checked.indexOf(bin.name) !== -1}
+                  checked={checked.indexOf(bin.name) !== -1}
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ "aria-labelledby": `bin-${bin.name}` }}

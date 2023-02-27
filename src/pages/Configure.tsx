@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container } from "@mui/material";
-import CategorySelector from "../components/CategorySelector";
+import CategorySelector from "../features/category/CategorySelector";
 
 export function Configure() {
   const categories: Array<string> = [
@@ -15,12 +15,7 @@ export function Configure() {
 
   return (
     <Container>
-      <CategorySelector
-        selected={selectedCategories}
-        setSelected={setSelectedCategories}
-        categories={categories}
-        headerText="what list would you like to update?"
-      />
+
     </Container>
   );
 }
